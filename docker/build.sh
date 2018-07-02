@@ -7,6 +7,9 @@ if [ -z ${LXG_DOCKER_REGISTRY} ]; then
 fi
 
 docker build -t ${LXG_DOCKER_REGISTRY}.azurecr.io/${LXG_DOCKER_PROJECT} .
+if [ $? -ne 0 ]; then
+    exit 1
+fi
 
 az acr login --name ${LXG_DOCKER_REGISTRY}
 if [ $? -ne 0 ]; then
